@@ -45,16 +45,9 @@ module URLTest
     service = Selenium::WebDriver::Chrome::Service.new("/usr/bin/operadriver",48923)
     service.start
     sleep(10)
-    begin
-      @driver = Selenium::WebDriver.for :remote,:url => service.uri,  :desired_capabilities => Selenium::WebDriver::Remote::Capabilities.opera('opera.binary' => "/usr/bin/opera",'operaOptions'=> {'binary' => '/usr/bin/opera'} )
-      @driver.manage.timeouts.implicit_wait = 60
-      @driver.manage.window.maximize
-    rescue
-      @driver.quit
-      @driver = Selenium::WebDriver.for :remote,:url => service.uri,  :desired_capabilities => Selenium::WebDriver::Remote::Capabilities.opera('opera.binary' => "/usr/bin/opera",'operaOptions'=> {'binary' => '/usr/bin/opera'} )
-      @driver.manage.timeouts.implicit_wait = 60
-      @driver.manage.window.maximize
-    end
+    @driver = Selenium::WebDriver.for :remote,:url => service.uri,  :desired_capabilities => Selenium::WebDriver::Remote::Capabilities.opera('opera.binary' => "/usr/bin/opera",'operaOptions'=> {'binary' => '/usr/bin/opera'} )
+    @driver.manage.timeouts.implicit_wait = 60
+    @driver.manage.window.maximize
    
   end
 
