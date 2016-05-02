@@ -47,10 +47,10 @@ module URLTest
     # @driver.manage.timeouts.implicit_wait = 60
     # @driver.manage.window.maximize
     deviceName = ENV['DEVICE'].gsub("_", " ")
-    mobile_emulation = { "deviceName" => ENV['DEVICE'] }
+    mobile_emulation = { "deviceName" => deviceName }
     caps = Selenium::WebDriver::Remote::Capabilities.chrome(
         "chromeOptions" => { "mobileEmulation" => mobile_emulation })
-    @driver = Selenium::WebDriver.for :remote, url: 'http://localhost:4444/wd/hub', desired_capabilities: caps
+    @driver = Selenium::WebDriver.for :chrome, desired_capabilities: caps
   end
 
   def launch_driver_opera
