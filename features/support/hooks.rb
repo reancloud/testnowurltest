@@ -8,6 +8,8 @@ Before do |scenario|
 #    @headless.start
 #  end
 
+  if ENV['BROWSER'] == 'device'
+    launch_driver_device
   if ENV['BROWSER'] == 'Chrome'
     launch_driver_chrome
   elsif ENV['BROWSER'] == 'Android'
