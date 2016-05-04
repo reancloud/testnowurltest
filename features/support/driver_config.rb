@@ -41,6 +41,19 @@ module URLTest
     @driver.manage.window.maximize
   end
 
+  def launch_driver_device
+    #puts "Launching driver for chrome.........................."
+    # @driver = Selenium::WebDriver.for :chrome
+    # @driver.manage.timeouts.implicit_wait = 60
+    # @driver.manage.window.maximize
+    deviceName = ENV['VERSION']
+    deviceName = deviceName.gsub("_", " ")
+    mobile_emulation = { "deviceName" => deviceName }
+    caps = Selenium::WebDriver::Remote::Capabilities.chrome(
+        "chromeOptions" => { "mobileEmulation" => mobile_emulation })
+    @driver = Selenium::WebDriver.for :chrome, desired_capabilities: caps
+  end
+
   def launch_driver_opera
     service = Selenium::WebDriver::Chrome::Service.new("/usr/bin/operadriver",48923)
     service.start
