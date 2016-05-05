@@ -1,4 +1,8 @@
+require 'mechanize'
+
 class GmailInfoPage < PageObject
+
+
 
   element :make_payment_button, {css: 'input.btn-orange'}
   element :search_form, {id: 'search-widget-form'}
@@ -67,6 +71,19 @@ class GmailInfoPage < PageObject
     end
   end
 
+  def get_all_links_on_page(url)
+
+    a = Mechanize.new
+    a.get(url) do |page|
+      links = page.links
+      page.links.each { |link|
+        puts "#{link.text} => #{link.href}"
+      }
+      return page.links
+    end
+
+  end
+
   def get_page_title
     driver.title
   end
@@ -76,5 +93,12 @@ class GmailInfoPage < PageObject
     confluence_password.send_keys(pwd)
     confluence_login_button.click
   end
+
+  def embed_link(src, label)
+    @builder.span(:class => 'embed') do |pre|
+      pre << %{<a href="#{src}" target="_blank">"#{label}"</a> }
+    end
+  end
+
 end
 
