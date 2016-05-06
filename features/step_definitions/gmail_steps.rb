@@ -10,7 +10,7 @@ Then(/^I should see the specified text$/) do
 end
 
 
-Then(/^I should navigate to each link on the page and take screenshot$/) do
+And(/^I should navigate to each link on the page and take screenshot$/) do
   page = GmailInfoPage.new(@driver)
   #sleep(20)
   links = page.get_all_links_on_page(ENV['TEST_URL'])

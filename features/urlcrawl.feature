@@ -5,5 +5,5 @@ Feature: URL Crawl
   Scenario: Open user page
     Given User page is opened
     Then I should see the specified text
-    Then I should navigate to each link on the page and take screenshot
+    And I should navigate to each link on the page and take screenshot
 
