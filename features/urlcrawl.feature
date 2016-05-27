@@ -9,5 +9,5 @@ Feature: URL Crawl
 
   Scenario: Crawl through the URL
     Given User page is opened
-    Then I should navigate to each link on the page and take screenshot
+    And I should navigate to each link on the page and take screenshot
 

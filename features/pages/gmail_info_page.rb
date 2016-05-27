@@ -1,4 +1,6 @@
 require 'mechanize'
+require "net/https"
+require "uri"
 
 class GmailInfoPage < PageObject
 
@@ -31,6 +33,7 @@ class GmailInfoPage < PageObject
   def get_homepage_url
     ENV['TEST_URL']
   end
+
 
   def verify_text_presence
     words = ENV['TEXT_TO_SEARCH'].to_s.gsub(" ","").split(',')
@@ -71,6 +74,30 @@ class GmailInfoPage < PageObject
     end
   end
 
+
+  def verify_response_code(url)
+
+    puts url
+    uri = URI.parse(url)
+    http = Net::HTTP.new(uri.host, uri.port)
+
+
+    if url.match(/^https/)
+      http.use_ssl = true
+    end
+
+
+    request = Net::HTTP::Get.new(uri.request_uri)
+    res = http.request(request)
+
+    # res.code #=> "200"
+    puts "--->The Return code is #{res.code}"
+    if res.code == "4*" || res.code == "5*"
+      raise("Failure! Return Response Code (#{res.code})")
+    end
+    return res.code
+  end
+
   def get_all_links_on_page(url)
 
     a = Mechanize.new
@@ -100,5 +127,13 @@ class GmailInfoPage < PageObject
     end
   end
 
+
+  def embed_text(src, label)
+    @builder.span(:class => 'embed') do |pre|
+      pre << %{<a href="#{src}" target="_blank">"#{label}"</a> }
+    end
+  end
+
 end
+
 

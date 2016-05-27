@@ -15,9 +15,11 @@ And(/^I should navigate to each link on the page and take screenshot$/) do
   #sleep(20)
   links = page.get_all_links_on_page(ENV['TEST_URL'])
 
-  links.each { |link|
+  links.each  { |link|
 
     step ("Navigate and take screenshot of \"#{link.href}\"")
+
+
     # if link.href.match(/^http/)
     #   @driver.get(link.href)
     # else
@@ -32,14 +34,25 @@ And(/^I should navigate to each link on the page and take screenshot$/) do
 
 end
 
-Then(/^Navigate and take screenshot of "([^"]*)"/) do |link|
+And(/^Navigate and take screenshot of "([^"]*)"/) do |link|
+  page = GmailInfoPage.new(@driver)
   link = link.strip
   if link.match(/^http/)
   # if link =~ /^http/
     @driver.get(link)
+    code = page.verify_response_code(link)
+    embed(link,"step/html",code)
+    data = "The Link: #{link} and the Return Code is :#{code}"
+    embed data, "mime-type;base64"
   else
     @driver.get(ENV['TEST_URL']+"/"+link)
+    code = page.verify_response_code(ENV['TEST_URL']+"/"+link)
+    embed(ENV['TEST_URL']+"/"+link,"step/html",code)
+
+    data = "The Link: #{link} and the Return Code is :#{code}"
+    embed data, "mime-type;base64"
   end
+
 
   sleep 3
 end
