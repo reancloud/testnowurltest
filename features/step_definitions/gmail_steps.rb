@@ -47,9 +47,10 @@ And(/^Navigate and take screenshot of "([^"]*)"/) do |link|
   else
     @driver.get(ENV['TEST_URL']+"/"+link)
     code = page.verify_response_code(ENV['TEST_URL']+"/"+link)
-    embed(ENV['TEST_URL']+"/"+link,"step/html",code)
+    actual_link=ENV['TEST_URL']+"/"+link
+    embed(actual_link,"step/html",code)
 
-    data = "The Link: #{link} and the Return Code is :#{code}"
+    data = "The Link: #{actual_link} and the Return Code is :#{code}"
     embed data, "mime-type;base64"
   end
 
