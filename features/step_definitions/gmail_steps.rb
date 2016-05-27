@@ -39,18 +39,29 @@ And(/^Navigate and take screenshot of "([^"]*)"/) do |link|
   link = link.strip
   if link.match(/^http/)
   # if link =~ /^http/
+    currenttime =  DateTime.now.strftime('%Q')
     @driver.get(link)
     code = page.verify_response_code(link)
+    aftertesttime = DateTime.now.strftime('%Q')
+    duration = (aftertesttime.to_i - currenttime.to_i)*1000
+
+    puts duration
+
     embed(link,"step/html",code)
-    data = "The Link: #{link} and the Return Code is :#{code}"
+    data = "The Link: #{link} and the Return Code is :#{code}:#{duration}"
     embed data, "mime-type;base64"
   else
+    currenttime =  DateTime.now.strftime('%Q')
     @driver.get(ENV['TEST_URL']+"/"+link)
     code = page.verify_response_code(ENV['TEST_URL']+"/"+link)
     actual_link=ENV['TEST_URL']+"/"+link
+    aftertesttime = DateTime.now.strftime('%Q')
+    duration = (aftertesttime.to_i - currenttime.to_i)*1000
+
+    puts duration
     embed(actual_link,"step/html",code)
 
-    data = "The Link: #{actual_link} and the Return Code is :#{code}"
+    data = "The Link: #{actual_link} and the Return Code is :#{code}:#{duration}"
     embed data, "mime-type;base64"
   end
 
