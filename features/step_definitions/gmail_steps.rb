@@ -45,7 +45,7 @@ And(/^Navigate and take screenshot of "([^"]*)"/) do |link|
     aftertesttime = DateTime.now.strftime('%Q')
     duration = (aftertesttime.to_i - currenttime.to_i)*1000
 
-    puts duration
+    #puts duration
 
     embed(link,"step/html",code)
     data = "The Link: #{link} and the Return Code is :#{code}:#{duration}"
@@ -58,7 +58,7 @@ And(/^Navigate and take screenshot of "([^"]*)"/) do |link|
     aftertesttime = DateTime.now.strftime('%Q')
     duration = (aftertesttime.to_i - currenttime.to_i)*1000
 
-    puts duration
+    #puts duration
     embed(actual_link,"step/html",code)
 
     data = "The Link: #{actual_link} and the Return Code is :#{code}:#{duration}"
