@@ -98,9 +98,8 @@ GEM
       json
       retriable
       selenium-webdriver
-    selenium-webdriver (2.45.0)
+    selenium-webdriver (2.53.4)
       childprocess (~> 0.5)
-      multi_json (~> 1.0)
       rubyzip (~> 1.0)
       websocket (~> 1.0)
     selenium_fury (1.0.9)
@@ -140,7 +139,7 @@ DEPENDENCIES
   rspec (= 3.2.0)
   rubocop-checkstyle_formatter (= 0.4.0)
   selendroid
-  selenium-webdriver (= 2.45.0)
+  selenium-webdriver (= 2.53.4)
   selenium_fury (= 1.0.9)
   simplecov (= 0.15.1)
   yard-cucumber (= 2.3.2)
