@@ -73,7 +73,7 @@ module URLTest
   def launch_driver_ie
     client = Selenium::WebDriver::Remote::Http::Default.new
     client.timeout = 120
-    caps = Selenium::WebDriver::Remote::Capabilities.ie(:javascript_enabled => true, :native_events => false)
+    caps = Selenium::WebDriver::Remote::Capabilities.ie(:javascript_enabled => true, :native_events => false, :ignore_protected_mode_settings => true)
     @driver = Selenium::WebDriver.for(:remote, :http_client => client, :url => "http://localhost:5555", :desired_capabilities => caps)
     @driver.manage.timeouts.implicit_wait = 60
     #@driver.manage.window.maximize
