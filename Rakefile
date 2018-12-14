@@ -3,6 +3,7 @@ require 'bundler'
 require 'bundler/setup'
 require 'parallel_tests/tasks'
 require 'cucumber/rake/task'
+require 'mechanize'
 
 #
 # require 'cucumber/rake/task'
