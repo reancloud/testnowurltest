@@ -1,4 +1,10 @@
+require 'mechanize'
+require "net/https"
+require "uri"
+
 class GmailInfoPage < PageObject
+
+
 
   element :make_payment_button, {css: 'input.btn-orange'}
   element :search_form, {id: 'search-widget-form'}
@@ -27,6 +33,7 @@ class GmailInfoPage < PageObject
   def get_homepage_url
     ENV['TEST_URL']
   end
+
 
   def verify_text_presence
     words = ENV['TEXT_TO_SEARCH'].to_s.split(',')
@@ -67,6 +74,43 @@ class GmailInfoPage < PageObject
     end
   end
 
+
+  def verify_response_code(url)
+
+    puts url
+    uri = URI.parse(url)
+    http = Net::HTTP.new(uri.host, uri.port)
+
+
+    if url.match(/^https/)
+      http.use_ssl = true
+    end
+
+
+    request = Net::HTTP::Get.new(uri.request_uri)
+    res = http.request(request)
+
+    # res.code #=> "200"
+    puts "--->The Return code is #{res.code}"
+    if res.code == "4*" || res.code == "5*"
+      raise("Failure! Return Response Code (#{res.code})")
+    end
+    return res.code
+  end
+
+  def get_all_links_on_page(url)
+
+    a = Mechanize.new
+    a.get(url) do |page|
+      links = page.links
+      page.links.each { |link|
+        puts "#{link.text} => #{link.href}"
+      }
+      return page.links
+    end
+
+  end
+
   def get_page_title
     driver.title
   end
@@ -76,5 +120,20 @@ class GmailInfoPage < PageObject
     confluence_password.send_keys(pwd)
     confluence_login_button.click
   end
+
+  def embed_link(src, label)
+    @builder.span(:class => 'embed') do |pre|
+      pre << %{<a href="#{src}" target="_blank">"#{label}"</a> }
+    end
+  end
+
+
+  def embed_text(src, label)
+    @builder.span(:class => 'embed') do |pre|
+      pre << %{<a href="#{src}" target="_blank">"#{label}"</a> }
+    end
+  end
+
 end
+
 
