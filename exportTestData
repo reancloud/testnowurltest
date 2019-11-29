@@ -1,5 +1,5 @@
 #!/bin/bash
-export BROWSER=Chrome
+export BROWSER=Firefox
 export TEST_URL="http://google.com"
 export TEXT_TO_SEARCH=Gmail
 export IS_UPA=true

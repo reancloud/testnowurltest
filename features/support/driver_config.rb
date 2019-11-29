@@ -17,13 +17,18 @@ module URLTest
     profile['extensions.firebug.netexport.defaultLogDir'] = File.absolute_path("./report/upa")
     profile['extensions.firebug.netexport.defaultFileName'] = "upaReport.har"
     profile['extensions.firebug.netexport.jsonpCallback'] = "jsonCallback";
-    @driver = Selenium::WebDriver.for :firefox, :profile => profile
+    caps = Selenium::WebDriver::Remote::Capabilities.firefox
+    caps['acceptInsecureCerts'] = true
+    @driver = Selenium::WebDriver.for(:firefox, desired_capabilities: caps, port: 5555)
   else
-   @driver = Selenium::WebDriver.for :firefox
+    caps = Selenium::WebDriver::Remote::Capabilities.firefox
+    caps['acceptInsecureCerts'] = true
+    @driver = Selenium::WebDriver.for(:firefox, desired_capabilities: caps, port: 5555)
   end
   @driver.manage.timeouts.implicit_wait = 30
   #@driver.manage.timeouts.page_load = 120
-  @driver.manage.window.maximize
+  target_size = Selenium::WebDriver::Dimension.new(1024, 768)
+  @driver.manage.window.size = target_size
   end
   
   def launch_driver_safari
