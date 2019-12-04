@@ -3,7 +3,6 @@ require 'rspec'
 require 'selenium-webdriver'
 require 'cucumber'
 require 'rake'
-require 'faker'
 #require 'headless'
 
 
