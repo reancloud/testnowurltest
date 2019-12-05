@@ -17,9 +17,7 @@ module URLTest
     profile['extensions.firebug.netexport.defaultLogDir'] = File.absolute_path("./report/upa")
     profile['extensions.firebug.netexport.defaultFileName'] = "upaReport.har"
     profile['extensions.firebug.netexport.jsonpCallback'] = "jsonCallback";
-    caps = Selenium::WebDriver::Remote::Capabilities.firefox
-    caps['acceptInsecureCerts'] = true
-    @driver = Selenium::WebDriver.for(:firefox, desired_capabilities: caps, port: 5555)
+    @driver = Selenium::WebDriver.for :firefox, :profile => profile
   else
     caps = Selenium::WebDriver::Remote::Capabilities.firefox
     caps['acceptInsecureCerts'] = true
