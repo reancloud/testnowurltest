@@ -2,19 +2,19 @@ require 'mechanize'
 require "net/https"
 require "uri"
 
-class GmailInfoPage < PageObject
+class GmailInfoPage
 
 
 
-  element :make_payment_button, {css: 'input.btn-orange'}
-  element :search_form, {id: 'search-widget-form'}
-  element :quick_links, {id: 'quick-links'}
+  # element :make_payment_button, {css: 'input.btn-orange'}
+  # element :search_form, {id: 'search-widget-form'}
+  # element :quick_links, {id: 'quick-links'}
 
-  element :confluence_username, {id: "os_username"}
-  element :confluence_password, {id: "os_password"}
-  element :confluence_login_button, {id: "loginButton"}
-  element :forgot_password, {id: "forgot-password"}
-  element :forgot_password_login_button, {xpath: "//p[@class='last']/a"}
+  # element :confluence_username, {id: "os_username"}
+  # element :confluence_password, {id: "os_password"}
+  # element :confluence_login_button, {id: "loginButton"}
+  # element :forgot_password, {id: "forgot-password"}
+  # element :forgot_password_login_button, {xpath: "//p[@class='last']/a"}
 
   def initialize(page_driver)
     @driver = page_driver
@@ -116,9 +116,9 @@ class GmailInfoPage < PageObject
   end
 
   def login_to_confluence(uname,pwd)
-    confluence_username.send_keys(uname)
-    confluence_password.send_keys(pwd)
-    confluence_login_button.click
+    @driver.find_element(id: "os_username").send_keys(uname)
+    @driver.find_element(id: "os_password").send_keys(pwd)
+    @driver.find_element(id: "loginButton").click
   end
 
   def embed_link(src, label)
