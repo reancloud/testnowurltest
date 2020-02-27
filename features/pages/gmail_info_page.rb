@@ -36,7 +36,7 @@ class GmailInfoPage
 
 
   def verify_text_presence
-    words = ENV['TEXT_TO_SEARCH'].to_s.gsub(" ","").split(',')
+    words = ENV['TEXT_TO_SEARCH'].to_s.split(',')
     wait = Selenium::WebDriver::Wait.new(:timeout => "#{ENV['PAGE_LOAD_TIME_OUT']}".to_i)
     not_found = []
     success = false
