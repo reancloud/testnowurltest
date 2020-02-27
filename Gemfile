@@ -1,5 +1,5 @@
 source "http://rubygems.org"
-gem 'nokogiri', '1.8.2'
+gem 'nokogiri', '1.10.8'
 gem 'cucumber', '1.3.20'
 gem 'bddfire', '1.1.5'
 gem 'selenium-webdriver', '2.53.4'

@@ -50,7 +50,7 @@ GEM
     mime-types (3.2.2)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2018.0812)
-    mini_portile2 (2.3.0)
+    mini_portile2 (2.4.0)
     minitar (0.6.1)
     minitar-cli (0.6.1)
       minitar (~> 0.6.0)
@@ -61,8 +61,8 @@ GEM
     net-http-persistent (3.0.0)
       connection_pool (~> 2.2)
     netrc (0.11.0)
-    nokogiri (1.8.2)
-      mini_portile2 (~> 2.3.0)
+    nokogiri (1.10.8)
+      mini_portile2 (~> 2.4.0)
     ntlm-http (0.1.1)
     parallel (1.12.1)
     parallel_tests (2.21.1)
@@ -150,7 +150,7 @@ DEPENDENCIES
   headless
   json (= 2.1.0)
   mechanize
-  nokogiri (= 1.8.2)
+  nokogiri (= 1.10.8)
   parallel_tests (= 2.21.1)
   rake (= 10.4.2)
   relish
@@ -163,5 +163,4 @@ DEPENDENCIES
   yard-cucumber (= 2.3.2)
 
 BUNDLED WITH
-   1.16.5
-
+   1.17.3
