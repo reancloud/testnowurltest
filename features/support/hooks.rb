@@ -82,7 +82,7 @@ end
 at_exit do
   ENV['TITLE'] = "URLTest : Search #{ENV['TEXT_TO_SEARCH']} in  #{ENV['TEST_URL']}"
   ENV['HEADING'] = "TestNow URL Test Report"
-  report_file = File.absolute_path("features_report.html","report")
+  report_file = File.absolute_path("feature-overview.html","report")
   doc = File.read(report_file)
   new_doc = doc.sub("Cucumber Features", "#{ENV['TITLE']}")
   new_docc = new_doc.sub("<title>Cucumber</title>", "<title>#{ENV['HEADING']}</title>")
