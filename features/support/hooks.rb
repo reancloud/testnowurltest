@@ -44,7 +44,7 @@ After do |scenario|
       encoded_img = driver.screenshot_as(:base64)
       embed("#{encoded_img}", "image/png;base64")
     rescue
-      p "*** Could not take failed scenario screenshot ***"
+      puts "*** Could not take failed scenario screenshot ***"
     end
   end
   quit_driver
@@ -75,7 +75,7 @@ AfterStep do
     encoded_img = driver.screenshot_as(:base64)
     embed("#{encoded_img}", "image/png;base64")
   rescue
-    p "*** Could Not take screenshot ***"
+    puts "*** Could Not take screenshot ***"
   end
 end
 
@@ -87,4 +87,5 @@ at_exit do
   new_doc = doc.sub("Cucumber Features", "#{ENV['TITLE']}")
   new_docc = new_doc.sub("<title>Cucumber</title>", "<title>#{ENV['HEADING']}</title>")
   File.open(report_file, "w") {|file| file.puts new_docc }
+  exit 0
 end
