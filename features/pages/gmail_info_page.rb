@@ -22,9 +22,9 @@ class GmailInfoPage
 
   def open_url()
     begin
-	sleep(5)
+	sleep(10)
       driver.get(get_homepage_url)
-	sleep(5)
+	sleep(30)
     rescue Exception=>e
       raise ("Wrong page #{e}")
     end

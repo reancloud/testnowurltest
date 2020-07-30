@@ -66,6 +66,6 @@ And(/^Navigate and take screenshot of "([^"]*)"/) do |link|
   end
 
 
-  # sleep 3
+  sleep 3
 end
 
