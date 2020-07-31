@@ -44,7 +44,7 @@ After do |scenario|
       encoded_img = driver.screenshot_as(:base64)
       embed("#{encoded_img}", "image/png;base64")
     rescue
-      puts "*** Could not take failed scenario screenshot ***"
+      p "*** Could not take failed scenario screenshot ***"
     end
   end
   quit_driver
@@ -75,7 +75,7 @@ AfterStep do
     encoded_img = driver.screenshot_as(:base64)
     embed("#{encoded_img}", "image/png;base64")
   rescue
-    puts "*** Could Not take screenshot ***"
+    p "*** Could Not take screenshot ***"
   end
 end
 
