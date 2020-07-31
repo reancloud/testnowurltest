@@ -87,4 +87,5 @@ at_exit do
   new_doc = doc.sub("Cucumber Features", "#{ENV['TITLE']}")
   new_docc = new_doc.sub("<title>Cucumber</title>", "<title>#{ENV['HEADING']}</title>")
   File.open(report_file, "w") {|file| file.puts new_docc }
+  exit 0
 end
